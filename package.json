@@ -10,7 +10,7 @@
     "lint": "lerna run lint"
   },
   "workspaces": [
-    "service"
+    "api"
   ],
   "devDependencies": {
     "lerna": "^3.22.1"

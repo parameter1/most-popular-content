@@ -1,0 +1,35 @@
+{
+  "name": "@most-popular-content/api",
+  "version": "0.0.0",
+  "description": "A simple, most popular website content API.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parameter1/most-popular-content.git",
+    "directory": "api"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "PORT=37934 gulp",
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@parameter1/mongodb": "^1.4.6",
+    "@parameter1/terminus": "^1.3.1",
+    "@parameter1/utils": "^1.1.12",
+    "envalid": "^7.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "newrelic": "^7.1.1"
+  },
+  "devDependencies": {
+    "@parameter1/gulp": "^1.1.10",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
