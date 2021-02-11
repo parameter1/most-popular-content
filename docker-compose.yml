@@ -39,7 +39,7 @@ services:
       <<: *env
       MONGO_URI: ${MONGO_URI-mongodb://mongodb:27017}
     depends_on:
-      - redis
+      - mongodb
     ports:
       - "37934:37934"
 
