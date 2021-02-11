@@ -3,14 +3,13 @@ const http = require('http');
 const express = require('express');
 const helmet = require('helmet');
 const { isDevelopment } = require('envalid');
+const routes = require('./routes');
 
 const service = express();
 service.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
 service.use(helmet());
-service.get('/', (req, res) => {
-  res.json({ ping: 'pong' });
-});
+routes(service);
 
 // Force Express to throw an error on 404s.
 service.use((req, res, next) => { // eslint-disable-line no-unused-vars
