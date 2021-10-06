@@ -11,7 +11,7 @@ x-env-defaults: &env
 x-node-defaults: &node
   tty: true
   init: true
-  image: node:14.15-alpine
+  image: node:14.17-alpine
   working_dir: /most-popular
   restart: always
   volumes:
@@ -38,6 +38,7 @@ services:
     environment:
       <<: *env
       MONGO_URI: ${MONGO_URI-mongodb://mongodb:27017}
+      MONGO_URL: ${MONGO_URL-mongodb://mongodb:27017}
     depends_on:
       - mongodb
     ports:

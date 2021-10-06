@@ -1,4 +1,4 @@
-FROM node:14.15-alpine as build
+FROM node:14.17-alpine as build
 WORKDIR /most-popular
 ENV NODE_ENV production
 ADD package.json yarn.lock /most-popular/
@@ -7,7 +7,7 @@ ADD api /most-popular/api
 RUN yarn --production --pure-lockfile
 WORKDIR /most-popular/api
 
-FROM node:14.15-alpine
+FROM node:14.17-alpine
 ENV NODE_ENV production
 ENV PORT 80
 COPY --from=build /most-popular /most-popular
