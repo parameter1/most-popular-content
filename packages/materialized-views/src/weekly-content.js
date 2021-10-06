@@ -14,6 +14,7 @@ export default async () => {
   const tenants = await getAllTenants();
 
   const now = dayjs();
+  const limit = 100;
   const start = now.subtract(1, 'week').startOf('day').toDate();
   const end = now.endOf('day').toDate();
 
@@ -59,7 +60,7 @@ export default async () => {
         { $unwind: '$users' },
         { $group: { _id: '$ent', uniqueUsers: { $sum: 1 }, views: { $sum: '$users.viewsPerUser' } } },
         { $sort: { uniqueUsers: -1 } },
-        { $limit: 50 },
+        { $limit: limit },
         { $addFields: { entityParts: { $split: ['$_id', '*'] } } },
         {
           $addFields: {
@@ -96,6 +97,8 @@ export default async () => {
             tenant: { $literal: slug },
             realm: { $literal: realm },
             data: 1,
+            startsAt: { $literal: start },
+            endsAt: { $literal: end },
             updatedAt: { $literal: now.toDate() },
           },
         },
