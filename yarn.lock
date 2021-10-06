@@ -1011,14 +1011,14 @@
   dependencies:
     gulp "^4.0.2"
 
-"@parameter1/mongodb@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/mongodb/-/mongodb-1.5.0.tgz#b0c2a15f8b3285a62afd8724c1a2fc8e9577b757"
-  integrity sha512-1U/ZyRukABDdNY8HAksihtH/BpSXLsBs0Rr0jpp4brK7h/zlPdhM3MXlMC6q/cG7oR7GKgrlpUThKNdooUaRyw==
+"@parameter1/mongodb@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/mongodb/-/mongodb-1.5.1.tgz#5b1210b83bb1010626eba62b1313b34d1f6f91ad"
+  integrity sha512-vYKFYuJvgBUx1YYEHZMMTdgGgHoMdKtyFDVuwELp2SOPSRHX6JgzjvOAUD9VDlQNAUgCoftvfv9RWMtsZ1kBTQ==
   dependencies:
-    "@parameter1/utils" "^1.1.23"
+    "@parameter1/utils" "^1.1.24"
     async "^3.2.1"
-    mongodb "^3.7.0"
+    mongodb "^3.7.2"
 
 "@parameter1/terminus@^1.9.0":
   version "1.9.0"
@@ -1028,12 +1028,12 @@
     "@godaddy/terminus" "^4.9.0"
     envalid "^7.2.1"
 
-"@parameter1/utils@^1.1.23":
-  version "1.1.23"
-  resolved "https://registry.yarnpkg.com/@parameter1/utils/-/utils-1.1.23.tgz#0ea138c854c96f24c1ba7636093fb9dbbab26ef1"
-  integrity sha512-mITkkcGG/61/QYhA2ppbZgr7McsY0HydntTV2sKC+HZVdjuotUd85M/v92mpWfQPCcFjRVJcQR5MjOfC8vDxIg==
+"@parameter1/utils@^1.1.24":
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/@parameter1/utils/-/utils-1.1.24.tgz#5529765305d22d6698021ecc51d114583e033ae8"
+  integrity sha512-hRTjEHaDIgEwEg8RJ7IhYhQgfieq2uUEuPxVp5KjC4/KdneCyKLYrMXzFnBSNmZA1j3+Y4dwQOk/cl9KwN+1GA==
   dependencies:
-    object-path "^0.11.7"
+    object-path "^0.11.8"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -4841,15 +4841,15 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-mongodb@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.7.0.tgz#a2e1d086b72e06f9af685d9ac863aeb3e80a41b8"
-  integrity sha512-JOAYjT9WYeRFkIP6XtDidAr3qvpfLRJhT2iokRWWH0tgqCQr9kmSfOJBZ3Ry0E5A3EqKxVPVhN3MV8Gn03o7pA==
+mongodb@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.7.2.tgz#d0d43b08ff1e5c13f4112175e321fa292cf35a3d"
+  integrity sha512-/Qi0LmOjzIoV66Y2JQkqmIIfFOy7ZKsXnQNlUXPFXChOw3FCdNqVD5zvci9ybm6pkMe/Nw+Rz9I0Zsk2a+05iQ==
   dependencies:
     bl "^2.2.1"
     bson "^1.1.4"
     denque "^1.4.1"
-    optional-require "^1.0.3"
+    optional-require "^1.1.8"
     safe-buffer "^5.1.2"
   optionalDependencies:
     saslprep "^1.0.0"
@@ -4937,10 +4937,10 @@ neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-newrelic@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/newrelic/-/newrelic-8.3.0.tgz#9e690110c241c1394923a91a15338a1c2eb980db"
-  integrity sha512-xVoVkPR6Jr1OcqTo7DSmTKaxS643AeFWYAYJLRNz7WKG6pZkpAfz7mIaCtGtxDH+6XRJpdJ5leovn4T50Cd64g==
+newrelic@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/newrelic/-/newrelic-8.4.0.tgz#a32cea441f7d3fa293be53aa306d442dd5a11ed8"
+  integrity sha512-ODXBav4NtBnXgRFkVk4iEk6L6S9kdRGp00dTufb1TY2BivziuPd9CdP596T5Z992bFoZP8SjXYUGoeExNjddpw==
   dependencies:
     "@grpc/grpc-js" "^1.2.11"
     "@grpc/proto-loader" "^0.5.6"
@@ -5213,10 +5213,10 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-path@^0.11.7:
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.7.tgz#5f211161f34bb395e4b13a5f565b79d933b6f65d"
-  integrity sha512-T4evaK9VfGGQskXBDILcn6F90ZD+WO3OwRFFQ2rmZdUH4vQeDBpiolTpVlPY2yj5xSepyILTjDyM6UvbbdHMZw==
+object-path@^0.11.8:
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.8.tgz#ed002c02bbdd0070b78a27455e8ae01fc14d4742"
+  integrity sha512-YJjNZrlXJFM42wTBn6zgOJVar9KFJvzx6sTWDte8sWZF//cnjl0BxHNpfZx+ZffXX63A9q0b1zsFiBX4g4X5KA==
 
 object-visit@^1.0.0:
   version "1.0.1"
@@ -5317,10 +5317,10 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-optional-require@^1.0.3:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/optional-require/-/optional-require-1.1.7.tgz#9ab5b254f59534108d4b2201d9ae96a063abc015"
-  integrity sha512-cIeRZocXsZnZYn+SevbtSqNlLbeoS4mLzuNn4fvXRMDRNhTGg0sxuKXl0FnZCtnew85LorNxIbZp5OeliILhMw==
+optional-require@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/optional-require/-/optional-require-1.1.8.tgz#16364d76261b75d964c482b2406cb824d8ec44b7"
+  integrity sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA==
   dependencies:
     require-at "^1.0.6"
 
