@@ -1,7 +1,7 @@
 import newrelic from './newrelic.js'; // eslint-disable-line import/order
 import bootService from '@parameter1/terminus/boot-service.js';
 import terminusUtils from '@parameter1/terminus/utils.js';
-import { filterUri } from '@parameter1/mongodb/utils.js';
+import { filterMongoUri } from '@parameter1/events-repositories';
 import mongodb from './mongodb/client.js';
 import server from './server.js';
 import pkg from '../package.js';
@@ -21,7 +21,7 @@ bootService({
   host: HOST,
   port: PORT,
   onError: newrelic.noticeError.bind(newrelic),
-  onStart: async () => mongodb.connect().then((client) => log(filterUri(client))),
+  onStart: async () => mongodb.connect().then((client) => log(filterMongoUri(client))),
   onSignal: () => mongodb.close(),
   onHealthCheck: () => mongodb.ping({ id: pkg.name }).then(() => 'db okay'),
 }).catch((e) => setImmediate(() => {

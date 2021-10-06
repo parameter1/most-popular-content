@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@parameter1/events-repositories": "^0.1.1",
-    "@parameter1/mongodb": "^1.5.1",
     "@parameter1/terminus": "^1.9.0",
     "@parameter1/utils": "^1.1.24",
     "dayjs": "^1.10.7",

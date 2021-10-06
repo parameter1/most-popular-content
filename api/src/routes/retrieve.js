@@ -1,5 +1,6 @@
 import createError from 'http-errors';
-import { Repo } from '@parameter1/mongodb/repo.js';
+import TenantRepositories from '@parameter1/events-repositories/repos/tenant';
+import dayjs from 'dayjs';
 import client from '../mongodb/client.js';
 import asyncRoute from '../utils/async-route.js';
 
@@ -12,48 +13,55 @@ export default () => asyncRoute(async (req, res) => {
   if (!limit || limit < 1) limit = 10;
   if (limit > 50) limit = 50;
 
-  const repo = new Repo({
-    name: 'event',
-    client,
-    dbName: `p1-events-${tenant}`,
-    collectionName: 'events',
-  });
-
-  const since = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000));
+  const repos = new TenantRepositories({ client, slug: tenant });
+  const now = dayjs();
+  const start = now.subtract(1, 'week').startOf('day').toDate();
+  const end = now.endOf('day').toDate();
 
   const pipeline = [
     {
       $match: {
-        date: { $gte: since },
-        realm,
-        act: 'View',
         cat: 'Content',
+        act: 'View',
+        ent: /^base\./,
+        realm,
         env: 'production',
       },
     },
-    { $project: { ent: 1, vis: 1 } },
     {
-      $group: {
-        _id: '$ent',
-        vis: { $addToSet: '$vis' },
+      $lookup: {
+        from: 'events-by-hour',
+        let: { eventHash: '$_id' },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ['$_', '$$eventHash'] },
+                  { $gte: ['$dt', start] },
+                  { $lte: ['$dt', end] },
+                ],
+              },
+            },
+          },
+          { $unwind: '$users' },
+          { $group: { _id: '$users._', views: { $sum: 1 } } },
+        ],
+        as: 'users',
       },
     },
-    { $unwind: '$vis' },
-    {
-      $group: {
-        _id: '$_id',
-        visitors: { $sum: 1 },
-      },
-    },
-    { $sort: { visitors: -1 } },
+    { $match: { 'users.0': { $exists: true } } },
+    { $unwind: '$users' },
+    { $group: { _id: '$ent', users: { $sum: 1 }, views: { $sum: '$users.views' } } },
+    { $sort: { users: -1 } },
     { $limit: limit },
   ];
 
-  const cursor = await repo.aggregate({ pipeline });
+  const cursor = await repos.eventObject.aggregate({ pipeline });
   const results = await cursor.toArray();
   const data = results.map((row) => {
     const id = parseInt(/\d{8}$/.exec(row._id)[0], 10);
-    return { id, vistiors: row.visitors };
+    return { id, vistiors: row.users };
   });
   res.json({ data });
 });
