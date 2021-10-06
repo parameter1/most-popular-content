@@ -21,12 +21,13 @@ export default () => asyncRoute(async (req, res) => {
     }, new Set());
 
   const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content' });
-  const doc = await collection.findOne({
+  const q = {
     granularity: 'week',
     tenant,
     realm,
-  });
-  if (!doc || !doc.data.length) return res.json({ data: [] });
+  };
+  const doc = await collection.findOne(q);
+  if (!doc || !doc.data.length) return res.json({ ...q, data: [] });
 
   const filtered = types.size
     ? doc.data.filter(({ content }) => types.has(content.type))
@@ -35,5 +36,11 @@ export default () => asyncRoute(async (req, res) => {
     ...row,
     id: row.content._id, // add to prevent BC-breaks until package is updated
   }));
-  return res.json({ data });
+  return res.json({
+    ...q,
+    startsAt: doc.startsAt,
+    endsAt: doc.endsAt,
+    updatedAt: doc.updatedAt,
+    data,
+  });
 });
