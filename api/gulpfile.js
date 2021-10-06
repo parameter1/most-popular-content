@@ -1,6 +1,8 @@
-const gulpfile = require('@parameter1/gulp/factory');
+import gulpfile from '@parameter1/gulp/factory.js';
 
 gulpfile({
   entry: 'src/index.js',
-  watchPaths: ['src/**/*.js'],
+  watchPaths: [
+    'src/**/*.js',
+  ],
 });

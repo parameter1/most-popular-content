@@ -1,9 +1,10 @@
-const createError = require('http-errors');
-const http = require('http');
-const express = require('express');
-const helmet = require('helmet');
-const { isDevelopment } = require('envalid');
-const routes = require('./routes');
+import createError from 'http-errors';
+import http from 'http';
+import express from 'express';
+import helmet from 'helmet';
+import routes from './routes/index.js';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const service = express();
 service.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
@@ -25,4 +26,4 @@ service.use((err, req, res, next) => {
   res.status(status).json(obj);
 });
 
-module.exports = http.createServer(service);
+export default http.createServer(service);

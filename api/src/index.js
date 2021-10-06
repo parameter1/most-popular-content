@@ -1,12 +1,13 @@
-require('./newrelic');
-const bootService = require('@parameter1/terminus/boot-service');
-const { log } = require('@parameter1/terminus/utils');
-const { filterUri } = require('@parameter1/mongodb/utils');
-const mongodb = require('./mongodb/client');
-const newrelic = require('./newrelic');
-const server = require('./server');
-const pkg = require('../package.json');
-const { HOST, PORT } = require('./env');
+import newrelic from './newrelic.js'; // eslint-disable-line import/order
+import bootService from '@parameter1/terminus/boot-service.js';
+import terminusUtils from '@parameter1/terminus/utils.js';
+import { filterUri } from '@parameter1/mongodb/utils.js';
+import mongodb from './mongodb/client.js';
+import server from './server.js';
+import pkg from '../package.js';
+import { HOST, PORT } from './env.js';
+
+const { log } = terminusUtils;
 
 process.on('unhandledRejection', (e) => {
   newrelic.noticeError(e);

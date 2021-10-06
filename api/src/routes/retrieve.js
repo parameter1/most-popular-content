@@ -1,9 +1,9 @@
-const createError = require('http-errors');
-const { Repo } = require('@parameter1/mongodb/repo');
-const client = require('../mongodb/client');
-const asyncRoute = require('../utils/async-route');
+import createError from 'http-errors';
+import { Repo } from '@parameter1/mongodb/repo.js';
+import client from '../mongodb/client.js';
+import asyncRoute from '../utils/async-route.js';
 
-module.exports = () => asyncRoute(async (req, res) => {
+export default () => asyncRoute(async (req, res) => {
   const { query } = req;
   const { tenant, realm } = query;
   if (!tenant) throw createError(400, 'The tenant query param must be provided.');

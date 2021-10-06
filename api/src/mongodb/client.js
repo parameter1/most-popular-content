@@ -1,8 +1,8 @@
-const MongoDBClient = require('@parameter1/mongodb/client');
-const { MONGO_URI } = require('../env');
-const { name, version } = require('../../package.json');
+import MongoDBClient from '@parameter1/mongodb/client.js';
+import { MONGO_URI } from '../env.js';
+import pkg from '../../package.js';
 
-module.exports = new MongoDBClient({
+export default new MongoDBClient({
   url: MONGO_URI,
-  options: { appname: `${name} v${version}` },
+  options: { appname: `${pkg.name} v${pkg.version}` },
 });
