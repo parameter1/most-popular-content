@@ -1,0 +1,28 @@
+{
+  "name": "@most-popular-content/lambda",
+  "version": "1.0.0",
+  "description": "Most popular AWS Lambda functions.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/lambda#readme",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parameter1/most-popular-content.git",
+    "directory": "packages/lambda"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@most-popular-content/materialized-views": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2"
+  }
+}

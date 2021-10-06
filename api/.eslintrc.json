@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "import/extensions": [2, "ignorePackages"],
+    "import/no-unresolved": [0, { "commonjs": false }],
+    "no-underscore-dangle": [0, { "allow": ["_id"] } ]
+  }
+}

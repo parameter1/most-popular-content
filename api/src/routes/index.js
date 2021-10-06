@@ -1,6 +1,6 @@
-const retrieve = require('./retrieve');
+import retrieve from './retrieve.js';
 
-module.exports = (app) => {
+export default (app) => {
   app.get('/', (req, res) => {
     res.json({ ping: 'pong' });
   });

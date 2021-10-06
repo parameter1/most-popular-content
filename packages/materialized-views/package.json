@@ -1,36 +1,29 @@
 {
-  "name": "@most-popular-content/api",
+  "name": "@most-popular-content/materialized-views",
   "version": "1.0.0",
-  "description": "A simple, most popular website content API.",
+  "description": "Generates materialized views for most popular items.",
   "author": "Jacob Bare <jacob@parameter1.com>",
-  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/api#readme",
+  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/materialized-views#readme",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/parameter1/most-popular-content.git",
-    "directory": "api"
+    "directory": "packages/materialized-views"
   },
   "private": true,
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "dev": "PORT=37934 gulp",
     "lint": "eslint --ext .js ./",
     "test": "yarn lint"
   },
   "dependencies": {
     "@parameter1/events-repositories": "^0.1.2",
-    "@parameter1/terminus": "^1.9.0",
-    "@parameter1/utils": "^1.1.24",
+    "async": "^3.2.1",
     "dayjs": "^1.10.7",
-    "envalid": "^7.2.1",
-    "express": "^4.17.1",
-    "helmet": "^4.6.0",
-    "http-errors": "^1.8.0",
-    "newrelic": "^8.4.0"
+    "envalid": "^7.2.1"
   },
   "devDependencies": {
-    "@parameter1/gulp": "^1.1.21",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2"

@@ -1,9 +1,8 @@
-const createError = require('http-errors');
-const { Repo } = require('@parameter1/mongodb/repo');
-const client = require('../mongodb/client');
-const asyncRoute = require('../utils/async-route');
+import createError from 'http-errors';
+import mongodb from '../mongodb/client.js';
+import asyncRoute from '../utils/async-route.js';
 
-module.exports = () => asyncRoute(async (req, res) => {
+export default () => asyncRoute(async (req, res) => {
   const { query } = req;
   const { tenant, realm } = query;
   if (!tenant) throw createError(400, 'The tenant query param must be provided.');
@@ -12,48 +11,45 @@ module.exports = () => asyncRoute(async (req, res) => {
   if (!limit || limit < 1) limit = 10;
   if (limit > 50) limit = 50;
 
-  const repo = new Repo({
-    name: 'event',
-    client,
-    dbName: `p1-events-${tenant}`,
-    collectionName: 'events',
+  const types = (query.types || '')
+    .split(',')
+    .map((v) => v.trim())
+    .filter((v) => v)
+    .reduce((set, type) => {
+      set.add(type);
+      return set;
+    }, new Set());
+
+  const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content' });
+  const q = {
+    granularity: 'week',
+    tenant,
+    realm,
+  };
+  const doc = await collection.findOne(q);
+  if (!doc || !doc.data.length) return res.json({ ...q, data: [] });
+
+  const formatted = doc.data.map((row) => {
+    const [ns, id] = row._id.split('*');
+    const [, , type] = ns.split('.');
+    return {
+      ...row,
+      content: { _id: parseInt(id, 10), type },
+    };
   });
 
-  const since = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000));
-
-  const pipeline = [
-    {
-      $match: {
-        date: { $gte: since },
-        realm,
-        act: 'View',
-        cat: 'Content',
-        env: 'production',
-      },
-    },
-    { $project: { ent: 1, vis: 1 } },
-    {
-      $group: {
-        _id: '$ent',
-        vis: { $addToSet: '$vis' },
-      },
-    },
-    { $unwind: '$vis' },
-    {
-      $group: {
-        _id: '$_id',
-        visitors: { $sum: 1 },
-      },
-    },
-    { $sort: { visitors: -1 } },
-    { $limit: limit },
-  ];
-
-  const cursor = await repo.aggregate({ pipeline });
-  const results = await cursor.toArray();
-  const data = results.map((row) => {
-    const id = parseInt(/\d{8}$/.exec(row._id)[0], 10);
-    return { id, vistiors: row.visitors };
+  const filtered = types.size
+    ? formatted.filter(({ content }) => types.has(content.type))
+    : formatted;
+  const data = filtered.slice(0, limit).map((row) => ({
+    ...row,
+    id: row.content._id, // add to prevent BC-breaks until package is updated
+  }));
+  return res.json({
+    ...q,
+    startsAt: doc.startsAt,
+    endsAt: doc.endsAt,
+    updatedAt: doc.updatedAt,
+    data,
   });
-  res.json({ data });
 });

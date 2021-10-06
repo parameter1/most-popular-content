@@ -1,13 +1,21 @@
-const {
+import {
   bool,
   port,
   cleanEnv,
   str,
-} = require('envalid');
+} from 'envalid';
 
-module.exports = cleanEnv(process.env, {
+export const {
+  HOST,
+  MONGO_URI, // deprecated
+  MONGO_URL,
+  NEW_RELIC_ENABLED,
+  NEW_RELIC_LICENSE_KEY,
+  PORT,
+} = cleanEnv(process.env, {
   HOST: str({ desc: 'The host that the service will run on.', default: '0.0.0.0' }),
-  MONGO_URI: str({ desc: 'The P1 Events MongoDB instance to connect to.' }),
+  MONGO_URI: str({ desc: 'The P1 Events MongoDB instance to connect to.' }), // deprecated
+  MONGO_URL: str({ desc: 'The P1 Events MongoDB instance to connect to.' }),
   NEW_RELIC_ENABLED: bool({ desc: 'Whether New Relic is enabled.', default: true, devDefault: false }),
   NEW_RELIC_LICENSE_KEY: str({ desc: 'The license key for New Relic.', devDefault: '(unset)' }),
   PORT: port({ desc: 'The port that the service will run on.', default: 80 }),
