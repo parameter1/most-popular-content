@@ -1,0 +1,30 @@
+{
+  "name": "@most-popular-content/materialize-views",
+  "version": "1.0.0",
+  "description": "Generates materialized views for most popular items.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/materialize-views#readme",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parameter1/most-popular-content.git",
+    "directory": "packages/materialize-views"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@parameter1/events-repositories": "^0.1.2",
+    "dayjs": "^1.10.7",
+    "envalid": "^7.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2"
+  }
+}
