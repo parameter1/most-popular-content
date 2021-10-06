@@ -29,9 +29,18 @@ export default () => asyncRoute(async (req, res) => {
   const doc = await collection.findOne(q);
   if (!doc || !doc.data.length) return res.json({ ...q, data: [] });
 
+  const formatted = doc.data.map((row) => {
+    const [ns, id] = row._id.split('*');
+    const [, , type] = ns.split('.');
+    return {
+      ...row,
+      content: { _id: parseInt(id, 10), type },
+    };
+  });
+
   const filtered = types.size
-    ? doc.data.filter(({ content }) => types.has(content.type))
-    : doc.data;
+    ? formatted.filter(({ content }) => types.has(content.type))
+    : formatted;
   const data = filtered.slice(0, limit).map((row) => ({
     ...row,
     id: row.content._id, // add to prevent BC-breaks until package is updated

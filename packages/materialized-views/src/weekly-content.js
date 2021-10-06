@@ -61,35 +61,7 @@ export default async () => {
         { $group: { _id: '$ent', uniqueUsers: { $sum: 1 }, views: { $sum: '$users.viewsPerUser' } } },
         { $sort: { uniqueUsers: -1 } },
         { $limit: limit },
-        { $addFields: { entityParts: { $split: ['$_id', '*'] } } },
-        {
-          $addFields: {
-            ns: { $arrayElemAt: ['$entityParts', 0] },
-            contentId: { $toInt: { $arrayElemAt: ['$entityParts', 1] } },
-          },
-        },
-        {
-          $project: {
-            content: {
-              _id: '$contentId',
-              type: {
-                $replaceOne: {
-                  input: { $arrayElemAt: [{ $split: ['$ns', '.'] }, 2] },
-                  find: 'content-',
-                  replacement: '',
-                },
-              },
-            },
-            uniqueUsers: 1,
-            views: 1,
-          },
-        },
-        {
-          $group: {
-            _id: null,
-            data: { $push: '$$ROOT' },
-          },
-        },
+        { $group: { _id: null, data: { $push: '$$ROOT' } } },
         {
           $project: {
             _id: 0,
