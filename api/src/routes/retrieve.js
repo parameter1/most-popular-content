@@ -45,14 +45,13 @@ export default () => asyncRoute(async (req, res) => {
             },
           },
           { $unwind: '$users' },
-          { $group: { _id: '$users._', views: { $sum: 1 } } },
+          { $group: { _id: '$users._', viewsPerUser: { $sum: 1 } } },
         ],
         as: 'users',
       },
     },
-    { $match: { 'users.0': { $exists: true } } },
     { $unwind: '$users' },
-    { $group: { _id: '$ent', users: { $sum: 1 }, views: { $sum: '$users.views' } } },
+    { $group: { _id: '$ent', users: { $sum: 1 }, views: { $sum: '$users.viewsPerUser' } } },
     { $sort: { users: -1 } },
     { $limit: limit },
   ];
@@ -61,7 +60,7 @@ export default () => asyncRoute(async (req, res) => {
   const results = await cursor.toArray();
   const data = results.map((row) => {
     const id = parseInt(/\d{8}$/.exec(row._id)[0], 10);
-    return { id, vistiors: row.users };
+    return { id, vistiors: row.users, views: row.views };
   });
   res.json({ data });
 });
