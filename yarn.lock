@@ -1016,16 +1016,16 @@
   dependencies:
     "@octokit/openapi-types" "^10.1.5"
 
-"@parameter1/events-repositories@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.1.1.tgz#86fa6050a14b2104e50ca1094139a6d40fe457bf"
-  integrity sha512-G7Mq4g3z5GTD0+jSsGswFdWNBAPFjvff+d0dgmeVLxm5Lx701cs4R8t2Nu/3N3E0Td0boR8AL6yLYfBun1zYzw==
+"@parameter1/events-repositories@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.1.2.tgz#662e65b92f927f6a9b958c8030ee7446c0ba2147"
+  integrity sha512-MpgdITrsNv5zn4RquVNg5iontUBxjjY5nFc07quqLCsVXR09StBFFEsn/fyeh/Z6ciWnUQAC4QmLOCG5MmrH9g==
   dependencies:
     "@parameter1/events-tenants" "^0.1.0"
     "@parameter1/events-ua-parser" "^0.1.0"
     "@parameter1/events-utils" "^0.1.0"
     "@parameter1/joi" "^1.2.10"
-    "@parameter1/mongodb" "^1.5.1"
+    "@parameter1/mongodb" "^1.6.0"
     dayjs "^1.10.7"
 
 "@parameter1/events-tenants@^0.1.0":
@@ -1062,10 +1062,10 @@
   dependencies:
     joi "^17.4.2"
 
-"@parameter1/mongodb@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/mongodb/-/mongodb-1.5.1.tgz#5b1210b83bb1010626eba62b1313b34d1f6f91ad"
-  integrity sha512-vYKFYuJvgBUx1YYEHZMMTdgGgHoMdKtyFDVuwELp2SOPSRHX6JgzjvOAUD9VDlQNAUgCoftvfv9RWMtsZ1kBTQ==
+"@parameter1/mongodb@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/mongodb/-/mongodb-1.6.0.tgz#9076aac297f4876baf1f8ac3ddd27f6559d88787"
+  integrity sha512-V6QB8aPWGm+u7S+5u850IkUkWBqHC4MSUYjSNEKSilcWy61fs6Re63X7saIicHjWtMxC+er/hzevbqlyA52Kiw==
   dependencies:
     "@parameter1/utils" "^1.1.24"
     async "^3.2.1"
