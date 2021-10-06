@@ -1,14 +1,14 @@
 {
-  "name": "@most-popular-content/materialize-views",
+  "name": "@most-popular-content/materialized-views",
   "version": "1.0.0",
   "description": "Generates materialized views for most popular items.",
   "author": "Jacob Bare <jacob@parameter1.com>",
-  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/materialize-views#readme",
+  "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/materialized-views#readme",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/parameter1/most-popular-content.git",
-    "directory": "packages/materialize-views"
+    "directory": "packages/materialized-views"
   },
   "private": true,
   "license": "MIT",
