@@ -1,3 +1,9 @@
 import { readFileSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-export default JSON.parse(readFileSync('./package.json'));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const file = resolve(__dirname, './package.json');
+
+export default JSON.parse(readFileSync(file));
