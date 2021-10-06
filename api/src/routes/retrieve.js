@@ -1,7 +1,5 @@
 import createError from 'http-errors';
-import TenantRepositories from '@parameter1/events-repositories/repos/tenant';
-import dayjs from 'dayjs';
-import client from '../mongodb/client.js';
+import mongodb from '../mongodb/client.js';
 import asyncRoute from '../utils/async-route.js';
 
 export default () => asyncRoute(async (req, res) => {
@@ -13,54 +11,29 @@ export default () => asyncRoute(async (req, res) => {
   if (!limit || limit < 1) limit = 10;
   if (limit > 50) limit = 50;
 
-  const repos = new TenantRepositories({ client, slug: tenant });
-  const now = dayjs();
-  const start = now.subtract(1, 'week').startOf('day').toDate();
-  const end = now.endOf('day').toDate();
+  const types = (query.types || '')
+    .split(',')
+    .map((v) => v.trim())
+    .filter((v) => v)
+    .reduce((set, type) => {
+      set.add(type);
+      return set;
+    }, new Set());
 
-  const pipeline = [
-    {
-      $match: {
-        cat: 'Content',
-        act: 'View',
-        ent: /^base\./,
-        realm,
-        env: 'production',
-      },
-    },
-    {
-      $lookup: {
-        from: 'events-by-hour',
-        let: { eventHash: '$_id' },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $and: [
-                  { $eq: ['$_', '$$eventHash'] },
-                  { $gte: ['$dt', start] },
-                  { $lte: ['$dt', end] },
-                ],
-              },
-            },
-          },
-          { $unwind: '$users' },
-          { $group: { _id: '$users._', viewsPerUser: { $sum: 1 } } },
-        ],
-        as: 'users',
-      },
-    },
-    { $unwind: '$users' },
-    { $group: { _id: '$ent', users: { $sum: 1 }, views: { $sum: '$users.viewsPerUser' } } },
-    { $sort: { users: -1 } },
-    { $limit: limit },
-  ];
-
-  const cursor = await repos.eventObject.aggregate({ pipeline });
-  const results = await cursor.toArray();
-  const data = results.map((row) => {
-    const id = parseInt(/\d{8}$/.exec(row._id)[0], 10);
-    return { id, vistiors: row.users, views: row.views };
+  const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content' });
+  const doc = await collection.findOne({
+    granularity: 'week',
+    tenant,
+    realm,
   });
-  res.json({ data });
+  if (!doc || !doc.data.length) return res.json({ data: [] });
+
+  const filtered = types.size
+    ? doc.data.filter(({ content }) => types.has(content.type))
+    : doc.data;
+  const data = filtered.slice(0, limit).map((row) => ({
+    ...row,
+    id: row.content._id, // add to prevent BC-breaks until package is updated
+  }));
+  return res.json({ data });
 });
