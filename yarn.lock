@@ -1016,22 +1016,22 @@
   dependencies:
     "@octokit/openapi-types" "^10.1.5"
 
-"@parameter1/events-repositories@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.1.2.tgz#662e65b92f927f6a9b958c8030ee7446c0ba2147"
-  integrity sha512-MpgdITrsNv5zn4RquVNg5iontUBxjjY5nFc07quqLCsVXR09StBFFEsn/fyeh/Z6ciWnUQAC4QmLOCG5MmrH9g==
+"@parameter1/events-repositories@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.1.3.tgz#4cd898f1e3e5671d693e29be2212bab53bb6459e"
+  integrity sha512-OFbzGEHflqtbH4xF4f1vrHA6LSj4bMXvrIXGqLPz/R0mONLbP0uzWi+LnaGvLQ+LTSIhIY9YO6JqSu5KEAKlXQ==
   dependencies:
-    "@parameter1/events-tenants" "^0.1.0"
+    "@parameter1/events-tenants" "^0.1.3"
     "@parameter1/events-ua-parser" "^0.1.0"
     "@parameter1/events-utils" "^0.1.0"
     "@parameter1/joi" "^1.2.10"
     "@parameter1/mongodb" "^1.6.0"
     dayjs "^1.10.7"
 
-"@parameter1/events-tenants@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.1.0.tgz#697ccb3bc1a709da5fbf59bc15a37b72b124b7db"
-  integrity sha512-VneNxjYlMPfr9T22Wetyh3GF9BNif3k7NS1g7QnGz2uo8dwCrsXQNZ/FH+IkBE/m/LSUkmuwl13MRd5YNmOFrw==
+"@parameter1/events-tenants@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.1.3.tgz#88ac084e3af5d26ab434480de4dde231afc5a7c9"
+  integrity sha512-kyFJfuZPYm9wqWWoxRSanuigGJOTzgRFNJsiCuyJ4yWjpgH+0NoFIys5Yj5rF9iLaiJO5aaAE+Z66GfNvp5bGg==
   dependencies:
     immutable "^4.0.0-rc.15"
 
