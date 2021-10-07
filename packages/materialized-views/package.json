@@ -1,6 +1,6 @@
 {
   "name": "@most-popular-content/materialized-views",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Generates materialized views for most popular items.",
   "author": "Jacob Bare <jacob@parameter1.com>",
   "homepage": "https://github.com/parameter1/most-popular-content/tree/master/packages/materialized-views#readme",
