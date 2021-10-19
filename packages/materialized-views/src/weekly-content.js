@@ -14,7 +14,7 @@ export default async () => {
   const tenants = await getAllTenants();
 
   const now = dayjs();
-  const limit = 50;
+  const limit = 250;
   const start = now.subtract(1, 'week').startOf('day').toDate();
   const end = now.endOf('day').toDate();
 
