@@ -31,12 +31,13 @@ export default () => asyncRoute(async (req, res) => {
 
   const formatted = doc.data.map((row) => {
     const [ns, id] = row._id.split('*');
-    const [, , type] = ns.split('.');
+    const [, , fullType] = ns.split('.');
+    const type = fullType.replace(/^content-/, '');
     return {
       ...row,
       content: { _id: parseInt(id, 10), type },
     };
-  });
+  }).filter(({ content }) => content._id && content.type && content.type !== 'undefined');
 
   const filtered = types.size
     ? formatted.filter(({ content }) => types.has(content.type))
