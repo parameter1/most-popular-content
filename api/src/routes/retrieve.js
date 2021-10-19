@@ -32,7 +32,7 @@ export default () => asyncRoute(async (req, res) => {
   const formatted = doc.data.map((row) => {
     const [ns, id] = row._id.split('*');
     const [, , fullType] = ns.split('.');
-    const type = fullType.replace(/^content-/, '');
+    const type = fullType ? fullType.replace(/^content-/, '') : undefined;
     return {
       ...row,
       content: { _id: parseInt(id, 10), type },
