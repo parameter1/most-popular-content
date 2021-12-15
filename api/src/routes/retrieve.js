@@ -5,6 +5,7 @@ import asyncRoute from '../utils/async-route.js';
 export default () => asyncRoute(async (req, res) => {
   const { query } = req;
   const { tenant, realm } = query;
+  const granularity = query.granularity ? query.granularity : 'week';
   if (!tenant) throw createError(400, 'The tenant query param must be provided.');
   if (!realm) throw createError(400, 'The realm query param must be provided.');
   let limit = query.limit ? parseInt(query.limit, 10) : 10;
@@ -22,7 +23,7 @@ export default () => asyncRoute(async (req, res) => {
 
   const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content' });
   const q = {
-    granularity: 'week',
+    granularity,
     tenant,
     realm,
   };
