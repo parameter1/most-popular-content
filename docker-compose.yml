@@ -24,7 +24,7 @@ x-node-defaults: &node
 services:
   mongodb:
     tty: true
-    image: mongo:3.4
+    image: mongo:5.0
     volumes:
       - mongodb:/data/db
     ports:
