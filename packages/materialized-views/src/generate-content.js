@@ -10,16 +10,16 @@ const getRealms = async (repos) => {
 
 const { log } = console;
 
-export default async () => {
+export default async ({ granularity }) => {
   const tenants = await getAllTenants();
 
   const now = dayjs();
   const limit = 250;
-  const start = now.subtract(1, 'week').startOf('day').toDate();
+  const start = now.subtract(1, granularity).startOf('day').toDate();
   const end = now.endOf('day').toDate();
 
   await eachSeries(tenants, async (slug) => {
-    log(`Updating weekly content data for ${slug}...`);
+    log(`Updating content data for ${slug} by ${granularity}...`);
     const repos = createRepos(slug);
     const realms = await getRealms(repos);
     log(`Found ${realms.length} realms to update.`);
@@ -65,7 +65,7 @@ export default async () => {
         {
           $project: {
             _id: 0,
-            granularity: { $literal: 'week' },
+            granularity: { $literal: granularity },
             tenant: { $literal: slug },
             realm: { $literal: realm },
             data: 1,

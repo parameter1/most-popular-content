@@ -13,7 +13,7 @@ const { log } = console;
   const conn = await mongodb.connect();
   log(`MongoDB connected to ${filterMongoUri(conn)}`);
 
-  await generateContent({ granularity: 'week' });
+  await generateContent({ granularity: 'month' });
 
   log('Closing MongoDB...');
   await mongodb.close();
