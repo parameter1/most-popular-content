@@ -2,12 +2,15 @@ import createError from 'http-errors';
 import mongodb from '../mongodb/client.js';
 import asyncRoute from '../utils/async-route.js';
 
+const granularities = new Set(['week', 'month']);
+
 export default () => asyncRoute(async (req, res) => {
   const { query } = req;
   const { tenant, realm } = query;
-  const granularity = query.granularity ? query.granularity : 'week';
+  const granularity = query.granularity || 'week';
   if (!tenant) throw createError(400, 'The tenant query param must be provided.');
   if (!realm) throw createError(400, 'The realm query param must be provided.');
+  if (!granularities.has(granularity)) throw createError(400, 'The provided granularity is not supported');
   let limit = query.limit ? parseInt(query.limit, 10) : 10;
   if (!limit || limit < 1) limit = 10;
   if (limit > 50) limit = 50;
