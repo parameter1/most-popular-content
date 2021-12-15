@@ -19,7 +19,7 @@ export default async ({ granularity }) => {
   const end = now.endOf('day').toDate();
 
   await eachSeries(tenants, async (slug) => {
-    log(`Updating ${granularity}ly content data for ${slug}...`);
+    log(`Updating content data for ${slug} by ${granularity}...`);
     const repos = createRepos(slug);
     const realms = await getRealms(repos);
     log(`Found ${realms.length} realms to update.`);
