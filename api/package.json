@@ -24,7 +24,7 @@
     "@parameter1/utils": "^1.1.24",
     "dayjs": "^1.11.0",
     "envalid": "^7.3.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "helmet": "^4.6.0",
     "http-errors": "^1.8.0",
     "ioredis": "^4.28.5",
