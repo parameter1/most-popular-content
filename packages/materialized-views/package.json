@@ -22,7 +22,7 @@
     "@parameter1/events-tenants": "^0.2.0",
     "async": "^3.2.1",
     "dayjs": "^1.11.0",
-    "envalid": "^7.2.1"
+    "envalid": "^7.3.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
