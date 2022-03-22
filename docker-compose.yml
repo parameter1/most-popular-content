@@ -30,6 +30,12 @@ services:
     ports:
       - "37930:27017"
 
+  redis:
+    tty: true
+    image: redis:6.0-alpine
+    ports:
+      - "37932:6379"
+
   api:
     <<: *node
     working_dir: /most-popular/api
@@ -37,9 +43,11 @@ services:
     command: ["dev"]
     environment:
       <<: *env
+      REDIS_DSN: ${REDIS_DSN-redis://redis}
       MONGO_URL: ${MONGO_URL-mongodb://mongodb:27017}
     depends_on:
       - mongodb
+      - redis
     ports:
       - "37934:37934"
 
