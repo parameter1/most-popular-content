@@ -71,20 +71,24 @@
   dependencies:
     stoppable "^1.1.0"
 
-"@grpc/grpc-js@^1.2.11":
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.3.7.tgz#58b687aff93b743aafde237fd2ee9a3259d7f2d8"
-  integrity sha512-CKQVuwuSPh40tgOkR7c0ZisxYRiN05PcKPW72mQL5y++qd7CwBRoaJZvU5xfXnCJDFBmS3qZGQ71Frx6Ofo2XA==
+"@grpc/grpc-js@^1.5.5":
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.5.9.tgz#df44b3d6bc1d5eb4779aab96e00f6084fd07a3c8"
+  integrity sha512-un+cXqErq5P4p3+WgYVNVh7FB51MSnaoRef7QWDcMXKR6FX2R6Z/bltcJMxNNdTUMC85lkOQcpnAAetFziPSng==
   dependencies:
+    "@grpc/proto-loader" "^0.6.4"
     "@types/node" ">=12.12.47"
 
-"@grpc/proto-loader@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.5.6.tgz#1dea4b8a6412b05e2d58514d507137b63a52a98d"
-  integrity sha512-DT14xgw3PSzPxwS13auTEwxhMMOoz33DPUKNtmYK/QYbBSpLXJy78FGGs5yVoxVobEqPm4iW9MOIoz0A3bLTRQ==
+"@grpc/proto-loader@^0.6.4", "@grpc/proto-loader@^0.6.9":
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.9.tgz#4014eef366da733f8e04a9ddd7376fe8a58547b7"
+  integrity sha512-UlcCS8VbsU9d3XTXGiEVFonN7hXk+oMXZtoHHG2oSA1/GcDP1q6OUgs20PzHDGizzyi8ufGSUDlk3O2NyY7leg==
   dependencies:
+    "@types/long" "^4.0.1"
     lodash.camelcase "^4.3.0"
-    protobufjs "^6.8.6"
+    long "^4.0.0"
+    protobufjs "^6.10.0"
+    yargs "^16.2.0"
 
 "@hapi/hoek@^9.0.0":
   version "9.2.1"
@@ -788,28 +792,31 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@newrelic/aws-sdk@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@newrelic/aws-sdk/-/aws-sdk-4.0.1.tgz#8a4051a316c19172a3cc80511c2c7265e3f068e6"
-  integrity sha512-6pjPHKODTMItaO6zHDSR3HH7ohvUP9zzQf2pKMKdU4lB/1HV2+Xf6r92X96zPmGQsAnCP9xhgbseUklHD00a1Q==
-
-"@newrelic/koa@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@newrelic/koa/-/koa-6.0.1.tgz#b59fdc374e150daa39d7c78a84c6b72ae39b5dfa"
-  integrity sha512-LrM0wLBcdngkL6gfAyqlBciqncZJ/Z2DhHCvKQbYSqwG0UxUZ5EZyYqkmU28UIFAdC6ag/6QDEFwYg3PXwJbzQ==
-
-"@newrelic/native-metrics@^7.0.1":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@newrelic/native-metrics/-/native-metrics-7.0.2.tgz#1137a45deab644e959d699e527fb1955c845890a"
-  integrity sha512-r/V9AuQ3svcYWYDbRMIqy36guO3871b0/26e/Bx5SvfR1E/2uy6sHvtvzYIF5kOl+46AFuzR1C9ZfCe2ofCtgg==
+"@newrelic/aws-sdk@^4.1.1":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@newrelic/aws-sdk/-/aws-sdk-4.1.2.tgz#6548bbe408542cd9ee2999319dc14c11e37e4a95"
+  integrity sha512-B83gZDS6eseNAMd41s8FTyd+JSxKHl4cN8kQnh1k5aYe0XB/Mi3hxn0/mxGzui84L4kL0GJCCg/UOg+A2ciSQg==
   dependencies:
-    nan "^2.14.2"
+    semver "^7.3.5"
+
+"@newrelic/koa@^6.1.1":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@newrelic/koa/-/koa-6.1.2.tgz#98e8e24ea0bee97197f02030e3ad09912dadacf2"
+  integrity sha512-nmjr5hv+nRDC2NaRF4+iex41K6iJ/UCujgnj8oyht1grazJXQHq0dJZdMxUVNMMO+m4ukTeisSlI4d/H/W9JUw==
+
+"@newrelic/native-metrics@^7.1.1":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@newrelic/native-metrics/-/native-metrics-7.1.2.tgz#e18af9447894d3f637c85bca19474cb81dc71d99"
+  integrity sha512-Ay0iLiwb/TIlbxxuWqxhrW1FxOSokKS09NKcRi1VXsMCMmvJiVhq6wvJcFvpoGLzvkTLLMFrJAHP0eJBKUpZfQ==
+  dependencies:
+    https-proxy-agent "^5.0.0"
+    nan "^2.15.0"
     semver "^5.5.1"
 
-"@newrelic/superagent@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@newrelic/superagent/-/superagent-5.0.1.tgz#b9a98ed60d514f6fa9efb5df6ab8b220bbceb5a3"
-  integrity sha512-Efn/G0OohcjDkNEgH/eqiie8boWYMFVT++zxHquIj7I8FdTd2ZoKzcxS2lbkbEAKKXO54o8+cShJTwpptkAdGg==
+"@newrelic/superagent@^5.1.0":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@newrelic/superagent/-/superagent-5.1.1.tgz#57e61878903718e1ba4310a365f65fae14a2b1a6"
+  integrity sha512-Bp2QtknriKHLKSfrBRyg4PjGJ8CCSkxYfZEDppOWmrGukJAP/9Vvr+ya0Mmj7SU8eIMMhaTvAnjvb2mVmX8wBw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1186,10 +1193,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.26.tgz#e40df24c957568f350cca04e63bfb1e1556d1cbf"
   integrity sha512-skWxepWOs+VArEBWd2S/VR3wUavioIIx9/HzW+UJiIjtwa6+kNXdsOeq7FfxDXf56hIcL0ieo2brwMgBJ1+lhw==
 
-"@types/node@^13.7.0":
-  version "13.13.41"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.41.tgz#045a4981318d31a581650ce70f340a32c3461198"
-  integrity sha512-qLT9IvHiXJfdrje9VmsLzun7cQ65obsBTmtU3EOnCSLFOoSHx1hpiRHoBnpdbyFqnzqdUUIv81JcEJQCB8un9g==
+"@types/node@>=13.7.0":
+  version "17.0.22"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.22.tgz#38b6c4b9b2f3ed9f2e376cce42a298fb2375251e"
+  integrity sha512-8FwbVoG4fy+ykY86XCAclKZDORttqE5/s7dyWZKLXTdv3vRy5HozBEinG5IqhvPXXzIZEcTVbuHlQEI6iuwcmw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1558,15 +1565,15 @@ async-settle@^1.0.0:
   dependencies:
     async-done "^1.2.2"
 
-async@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
-  integrity sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw==
-
 async@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.1.tgz#d3274ec66d107a47476a4c49136aacdb00665fc8"
   integrity sha512-XdD5lRO/87udXCMC9meWdYiR+Nq6ZjUfXidViUZGu2F1MO4T3XwZ1et0hb2++BgLfhyJwy44BGB/yx80ABx8hg==
+
+async@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
+  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -5034,7 +5041,7 @@ nan@^2.12.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.2.tgz#f5376400695168f4cc694ac9393d0c9585eeea19"
   integrity sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
 
-nan@^2.14.2:
+nan@^2.15.0:
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
   integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
@@ -5076,25 +5083,25 @@ neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-newrelic@^8.4.0:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/newrelic/-/newrelic-8.4.0.tgz#a32cea441f7d3fa293be53aa306d442dd5a11ed8"
-  integrity sha512-ODXBav4NtBnXgRFkVk4iEk6L6S9kdRGp00dTufb1TY2BivziuPd9CdP596T5Z992bFoZP8SjXYUGoeExNjddpw==
+newrelic@^8.9.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/newrelic/-/newrelic-8.9.0.tgz#a3156e3a1f9bb82d6ab8cc7b968d5ec5fbb2b8ab"
+  integrity sha512-faHbzQ3cRz/wL8xCmLF+9eku3j6wM/ebNrjrwWJAGDbAj5r3Ka/frf1EmXvXbgnBaqer5SRm150nhRFOzdoM8w==
   dependencies:
-    "@grpc/grpc-js" "^1.2.11"
-    "@grpc/proto-loader" "^0.5.6"
-    "@newrelic/aws-sdk" "^4.0.1"
-    "@newrelic/koa" "^6.0.1"
-    "@newrelic/superagent" "^5.0.1"
+    "@grpc/grpc-js" "^1.5.5"
+    "@grpc/proto-loader" "^0.6.9"
+    "@newrelic/aws-sdk" "^4.1.1"
+    "@newrelic/koa" "^6.1.1"
+    "@newrelic/superagent" "^5.1.0"
     "@tyriar/fibonacci-heap" "^2.0.7"
-    async "^3.2.0"
+    async "^3.2.3"
     concat-stream "^2.0.0"
     https-proxy-agent "^5.0.0"
     json-stringify-safe "^5.0.0"
     readable-stream "^3.6.0"
     semver "^5.3.0"
   optionalDependencies:
-    "@newrelic/native-metrics" "^7.0.1"
+    "@newrelic/native-metrics" "^7.1.1"
 
 next-tick@~1.0.0:
   version "1.0.0"
@@ -5893,10 +5900,10 @@ proto-list@~1.2.1:
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
 
-protobufjs@^6.8.6:
-  version "6.10.2"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.10.2.tgz#b9cb6bd8ec8f87514592ba3fdfd28e93f33a469b"
-  integrity sha512-27yj+04uF6ya9l+qfpH187aqEzfCF4+Uit0I9ZBQVqK09hk/SQzKa2MUqUpXaVa7LOFRg1TSSr3lVxGOk6c0SQ==
+protobufjs@^6.10.0:
+  version "6.11.2"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.2.tgz#de39fabd4ed32beaa08e9bb1e30d08544c1edf8b"
+  integrity sha512-4BQJoPooKJl2G9j3XftkIXjoC9C0Av2NOrWmbLWT1vH32GcSUHjM0Arra6UfTsVyfMAuFzaLucXn1sadxJydAw==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -5909,7 +5916,7 @@ protobufjs@^6.8.6:
     "@protobufjs/pool" "^1.1.0"
     "@protobufjs/utf8" "^1.1.0"
     "@types/long" "^4.0.1"
-    "@types/node" "^13.7.0"
+    "@types/node" ">=13.7.0"
     long "^4.0.0"
 
 protocols@^1.1.0, protocols@^1.4.0:
