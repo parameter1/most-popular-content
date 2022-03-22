@@ -1,7 +1,8 @@
 import createError from 'http-errors';
 import dayjs from 'dayjs';
-// import { createHash } from 'crypto';
+import { createHash } from 'crypto';
 import mongodb from '../mongodb/client.js';
+import redis from '../redis.js';
 import asyncRoute from '../utils/async-route.js';
 
 const granularities = new Set(['week', 'month']);
@@ -37,7 +38,16 @@ export default () => asyncRoute(async (req, res) => {
     tenant,
     ...(types.size && { type: { $in: [...types] } }),
   };
-  // const hash = createHash('sha1').update(JSON.stringify($match)).digest('hex');
+  const hash = createHash('sha256').update(JSON.stringify($match)).digest('hex');
+  const cacheKey = `most_popular_content:${tenant}:${hash}`;
+
+  const serialized = await redis.get(cacheKey);
+  if (serialized) {
+    const { obj, time } = JSON.parse(serialized);
+    res.set({ 'x-cache': 'hit', age: Math.round((Date.now() - time) / 1000) });
+    return res.json(obj);
+  }
+
   const pipeline = [
     { $match },
     {
@@ -95,7 +105,8 @@ export default () => asyncRoute(async (req, res) => {
   ];
   const cursor = await collection.aggregate(pipeline);
   const [doc] = await cursor.toArray();
-  res.json({
+
+  const obj = {
     granularity,
     tenant,
     realm,
@@ -103,5 +114,9 @@ export default () => asyncRoute(async (req, res) => {
     endsAt: end,
     ...(doc && { updatedAt: doc.updatedAt }),
     data: doc ? doc.data : [],
-  });
+  };
+  // 30 minute cache
+  await redis.set(cacheKey, JSON.stringify({ obj, time: Date.now() }), 'EX', 60 * 30);
+  res.set({ 'x-cache': 'miss' });
+  return res.json(obj);
 });
