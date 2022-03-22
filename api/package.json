@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@parameter1/events-repositories": "^0.2.0",
-    "@parameter1/terminus": "^1.9.0",
+    "@parameter1/terminus": "^1.10.0",
     "@parameter1/utils": "^1.1.24",
     "dayjs": "^1.10.7",
     "envalid": "^7.2.1",
@@ -31,7 +31,7 @@
     "newrelic": "^8.4.0"
   },
   "devDependencies": {
-    "@parameter1/gulp": "^1.1.21",
+    "@parameter1/gulp": "^1.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2"

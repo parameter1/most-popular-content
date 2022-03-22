@@ -1048,10 +1048,10 @@
   resolved "https://registry.yarnpkg.com/@parameter1/events-utils/-/events-utils-0.2.0.tgz#cffe301c7a960096fd7352a280463cd6ab19a086"
   integrity sha512-eisaCtNPU/MRoNMLVUTBVqErxAJ6r8JBRmX1YA2GXRw3R3Z3G7Y7K/A7+MDPHbNGbm9j4DTa38KUsS48TGz/zg==
 
-"@parameter1/gulp@^1.1.21":
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/@parameter1/gulp/-/gulp-1.1.21.tgz#3541878aa641340dfe8f4b3d70aa6709c81c712f"
-  integrity sha512-wZeioBb9+hgjhTfwU3VCfCMarrGneJZp0cr53ne/+wXNfiLDabCTNzIqXMUNUS5D1m5sENQpsip933TQ5O7y/Q==
+"@parameter1/gulp@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/gulp/-/gulp-1.2.0.tgz#9844a82a0dea43b0bec23b464f74b88b785b9e3f"
+  integrity sha512-SwnQAUy8i1JBpGkXKPKnZIf30l6Xa10fndAGnYvwfUlYFlf9vl+AHFdf8HXhl7pTM3wj9CuzIZV0yynhbMFL7Q==
   dependencies:
     gulp "^4.0.2"
 
@@ -1071,10 +1071,10 @@
     async "^3.2.1"
     mongodb "^3.7.2"
 
-"@parameter1/terminus@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/terminus/-/terminus-1.9.0.tgz#e2d07dc58ea61d340e43a27d3fbb46f9f160c98c"
-  integrity sha512-49hd/+z9li7JZKVGWYWg21u973RZtkH1rjwgaK0vqJFCwf/VBe+1QKqclQzIiwGS0YnEFuXLH8LQxfj/zSdFnQ==
+"@parameter1/terminus@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/terminus/-/terminus-1.10.0.tgz#f1e79d54b2fe9982b27ed92e7b666506a2c99ea6"
+  integrity sha512-eMa43RE1LuWnrO33KvkiSaTQQSmxYVG+29JfMi038/tOu5cR9TPG698QLoWvOAcVprngVQSDLcOaB0ueH/yCJA==
   dependencies:
     "@godaddy/terminus" "^4.9.0"
     envalid "^7.2.1"
