@@ -1,12 +1,8 @@
 import dayjs from 'dayjs';
 import eachSeries from 'async/eachSeries.js';
 import getAllTenants from '../utils/get-all-tenants.js';
+import getRealms from '../utils/get-realms.js';
 import createRepos from '../mongodb/create-repos.js';
-
-const getRealms = async (repos) => {
-  const values = await repos.eventObject.distinct({ key: 'realm' });
-  return values.filter((v) => v).map((v) => v.trim()).filter((v) => v);
-};
 
 const { log } = console;
 
