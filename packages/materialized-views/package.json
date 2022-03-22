@@ -20,7 +20,7 @@
   "dependencies": {
     "@parameter1/events-repositories": "^0.2.0",
     "@parameter1/events-tenants": "^0.2.0",
-    "async": "^3.2.1",
+    "async": "^3.2.3",
     "dayjs": "^1.11.0",
     "envalid": "^7.3.0"
   },
