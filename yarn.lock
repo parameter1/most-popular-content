@@ -1016,37 +1016,37 @@
   dependencies:
     "@octokit/openapi-types" "^10.1.5"
 
-"@parameter1/events-repositories@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.1.3.tgz#4cd898f1e3e5671d693e29be2212bab53bb6459e"
-  integrity sha512-OFbzGEHflqtbH4xF4f1vrHA6LSj4bMXvrIXGqLPz/R0mONLbP0uzWi+LnaGvLQ+LTSIhIY9YO6JqSu5KEAKlXQ==
+"@parameter1/events-repositories@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.2.0.tgz#6fbeee34fd6d19815c5c0357701e2156ace07cab"
+  integrity sha512-d/fmZNExw6ZMveUyfrHZq3kHKmX48tllSh1GRFFPnw+BtDOgH71xPybgtRvwpqwsX/qeRVZvjUlEt94B9S/IEw==
   dependencies:
-    "@parameter1/events-tenants" "^0.1.3"
-    "@parameter1/events-ua-parser" "^0.1.0"
-    "@parameter1/events-utils" "^0.1.0"
+    "@parameter1/events-tenants" "^0.2.0"
+    "@parameter1/events-ua-parser" "^0.2.0"
+    "@parameter1/events-utils" "^0.2.0"
     "@parameter1/joi" "^1.2.10"
     "@parameter1/mongodb" "^1.6.0"
     dayjs "^1.10.7"
 
-"@parameter1/events-tenants@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.1.3.tgz#88ac084e3af5d26ab434480de4dde231afc5a7c9"
-  integrity sha512-kyFJfuZPYm9wqWWoxRSanuigGJOTzgRFNJsiCuyJ4yWjpgH+0NoFIys5Yj5rF9iLaiJO5aaAE+Z66GfNvp5bGg==
+"@parameter1/events-tenants@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.2.0.tgz#b9ff38f97cc4fcde6811b9715c5fcdac65ab75b1"
+  integrity sha512-gQrZGi7gF/Jd4vhsq9RNwVSoN+AqRW0QQ4dff9twU36Zt2OJxxXkjgm/+xtsxQgHj1Q4eAOYbYOCcaGQuPzGbQ==
   dependencies:
-    immutable "^4.0.0-rc.15"
+    immutable "^4.0.0"
 
-"@parameter1/events-ua-parser@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-ua-parser/-/events-ua-parser-0.1.0.tgz#f5d75a47c6f1d4dd8ef389a4fbfe164995cf111d"
-  integrity sha512-Nesz/A7UDzPdTrpwg3Wvr3qUPrfqS9EanRVjl0/7A2z7JvIvFnz5/KQuzUJZ0B0UTqh6LKKHwNjnL7tk+8L3Jw==
+"@parameter1/events-ua-parser@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-ua-parser/-/events-ua-parser-0.2.0.tgz#aa0777acde3f3bae9fc855088f1501e33b7d444b"
+  integrity sha512-KTnyjt+E6TQ/Jh/9q5GDO0smB3GEmscEOF0+2osLHB29WpGOE2lI8A2sa2K3EJW57+6C7XPiK5xOkYMr5s/SGw==
   dependencies:
     isbot "^3.3.4"
-    ua-parser-js "^0.7.28"
+    ua-parser-js "^0.7.31"
 
-"@parameter1/events-utils@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-utils/-/events-utils-0.1.0.tgz#cbb0a97db262be8630189cff9b6949c95d1c5aaf"
-  integrity sha512-Rfftkw42TITj42Xsymut0ptGJxrrnHDrd+WSkQirHRTYdfTPb2X5eENq1i1SgzrH0Kt1zmNYFORbnMeQHDI0ow==
+"@parameter1/events-utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/events-utils/-/events-utils-0.2.0.tgz#cffe301c7a960096fd7352a280463cd6ab19a086"
+  integrity sha512-eisaCtNPU/MRoNMLVUTBVqErxAJ6r8JBRmX1YA2GXRw3R3Z3G7Y7K/A7+MDPHbNGbm9j4DTa38KUsS48TGz/zg==
 
 "@parameter1/gulp@^1.1.21":
   version "1.1.21"
@@ -3794,10 +3794,10 @@ ignore@^5.1.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
-immutable@^4.0.0-rc.15:
-  version "4.0.0-rc.15"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.15.tgz#c30056f05eaaf5650fd15230586688fdd15c54bc"
-  integrity sha512-v8+A3sNyaieoP9dHegl3tEYnIZa7vqNiSv0U6D7YddiZi34VjKy4GsIxrRHj2d8+CS3MeiVja5QyNe4JO/aEXA==
+immutable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
+  integrity sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -7232,10 +7232,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-ua-parser-js@^0.7.28:
-  version "0.7.28"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
-  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
+ua-parser-js@^0.7.31:
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.31.tgz#649a656b191dffab4f21d5e053e27ca17cbff5c6"
+  integrity sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==
 
 uglify-js@^3.1.4:
   version "3.14.2"
