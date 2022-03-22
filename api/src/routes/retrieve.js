@@ -22,6 +22,7 @@ export default () => asyncRoute(async (req, res) => {
     .split(',')
     .map((v) => v.trim())
     .filter((v) => v)
+    .sort()
     .reduce((set, type) => {
       set.add(type);
       return set;
@@ -38,7 +39,7 @@ export default () => asyncRoute(async (req, res) => {
     tenant,
     ...(types.size && { type: { $in: [...types] } }),
   };
-  const hash = createHash('sha256').update(JSON.stringify($match)).digest('hex');
+  const hash = createHash('sha256').update(JSON.stringify({ $match, limit })).digest('hex');
   const cacheKey = `most_popular_content:${tenant}:${hash}`;
 
   const serialized = await redis.get(cacheKey);
