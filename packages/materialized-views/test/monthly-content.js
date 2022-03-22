@@ -1,6 +1,6 @@
 import { filterMongoUri } from '@parameter1/events-repositories';
 import mongodb from '../src/mongodb/client.js';
-import generateContent from '../src/generate-content.js';
+import generateContent from '../src/generate/content.js';
 
 const immediatelyThrow = (e) => setImmediate(() => { throw e; });
 
