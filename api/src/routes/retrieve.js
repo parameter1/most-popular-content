@@ -1,5 +1,8 @@
 import createError from 'http-errors';
+import dayjs from 'dayjs';
+import { createHash } from 'crypto';
 import mongodb from '../mongodb/client.js';
+import redis from '../redis.js';
 import asyncRoute from '../utils/async-route.js';
 
 const granularities = new Set(['week', 'month']);
@@ -19,42 +22,102 @@ export default () => asyncRoute(async (req, res) => {
     .split(',')
     .map((v) => v.trim())
     .filter((v) => v)
+    .sort()
     .reduce((set, type) => {
       set.add(type);
       return set;
     }, new Set());
 
-  const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content' });
-  const q = {
+  const now = new Date();
+  const start = dayjs(now).startOf('hour').subtract(1, granularity).toDate();
+  const end = dayjs(now).startOf('hour').toDate();
+
+  const collection = await mongodb.collection({ dbName: 'most-popular', name: 'content-hourly' });
+  const $match = {
+    hour: { $gte: start, $lte: end },
+    realm,
+    tenant,
+    ...(types.size && { type: { $in: [...types] } }),
+  };
+  const hash = createHash('sha256').update(JSON.stringify({ $match, limit })).digest('hex');
+  const cacheKey = `most_popular_content:${tenant}:${hash}`;
+
+  const serialized = await redis.get(cacheKey);
+  if (serialized) {
+    const { obj, time } = JSON.parse(serialized);
+    res.set({ 'x-cache': 'hit', age: Math.round((Date.now() - time) / 1000) });
+    return res.json(obj);
+  }
+
+  const pipeline = [
+    { $match },
+    {
+      $project: {
+        contentId: 1,
+        type: 1,
+        users: 1,
+        views: 1,
+        updatedAt: 1,
+      },
+    },
+    {
+      $group: {
+        _id: '$contentId',
+        type: { $first: '$type' },
+        users: { $sum: '$users' },
+        views: { $sum: '$views' },
+        updatedAt: { $max: '$updatedAt' },
+      },
+    },
+    { $sort: { users: -1 } },
+    { $limit: limit },
+    {
+      $project: {
+        users: '$users',
+        uniqueUsers: '$users', // deprecated
+        views: '$views',
+        content: {
+          _id: '$_id',
+          type: '$type',
+        },
+        id: '$_id', // deprecated
+        updatedAt: '$updatedAt',
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        updatedAt: { $max: '$updatedAt' },
+        data: { $push: '$$ROOT' },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        granularity: { $literal: granularity },
+        tenant: { $literal: tenant },
+        realm: { $literal: realm },
+        startsAt: { $literal: start },
+        endsAt: { $literal: end },
+        updatedAt: '$updatedAt',
+        data: '$data',
+      },
+    },
+  ];
+  const cursor = await collection.aggregate(pipeline);
+  const [doc] = await cursor.toArray();
+
+  const obj = {
     granularity,
     tenant,
     realm,
+    startsAt: start,
+    endsAt: end,
+    ...(doc && { updatedAt: doc.updatedAt }),
+    data: doc ? doc.data : [],
   };
-  const doc = await collection.findOne(q);
-  if (!doc || !doc.data.length) return res.json({ ...q, data: [] });
-
-  const formatted = doc.data.map((row) => {
-    const [ns, id] = row._id.split('*');
-    const [, , fullType] = ns.split('.');
-    const type = fullType ? fullType.replace(/^content-/, '') : undefined;
-    return {
-      ...row,
-      content: { _id: parseInt(id, 10), type },
-    };
-  }).filter(({ content }) => content._id && content.type && content.type !== 'undefined');
-
-  const filtered = types.size
-    ? formatted.filter(({ content }) => types.has(content.type))
-    : formatted;
-  const data = filtered.slice(0, limit).map((row) => ({
-    ...row,
-    id: row.content._id, // add to prevent BC-breaks until package is updated
-  }));
-  return res.json({
-    ...q,
-    startsAt: doc.startsAt,
-    endsAt: doc.endsAt,
-    updatedAt: doc.updatedAt,
-    data,
-  });
+  // 30 minute cache
+  await redis.set(cacheKey, JSON.stringify({ obj, time: Date.now() }), 'EX', 60 * 30);
+  res.set({ 'x-cache': 'miss' });
+  return res.json(obj);
 });

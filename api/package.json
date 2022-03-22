@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "http-errors": "^1.8.0",
+    "ioredis": "^4.28.5",
     "newrelic": "^8.4.0"
   },
   "devDependencies": {

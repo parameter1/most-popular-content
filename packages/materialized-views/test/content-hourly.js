@@ -1,6 +1,6 @@
 import { filterMongoUri } from '@parameter1/events-repositories';
 import mongodb from '../src/mongodb/client.js';
-import generateContent from '../src/generate/content.js';
+import generateContentHourly from '../src/generate/content-hourly.js';
 
 const immediatelyThrow = (e) => setImmediate(() => { throw e; });
 
@@ -13,7 +13,7 @@ const { log } = console;
   const conn = await mongodb.connect();
   log(`MongoDB connected to ${filterMongoUri(conn)}`);
 
-  await generateContent({ granularity: 'month' });
+  await generateContentHourly();
 
   log('Closing MongoDB...');
   await mongodb.close();
