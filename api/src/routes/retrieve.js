@@ -28,6 +28,15 @@ export default () => asyncRoute(async (req, res) => {
       return set;
     }, new Set());
 
+  const includeIds = (query.includeIds || '')
+    .split(',')
+    .map((v) => parseInt(v, 10))
+    .filter((v) => v && !Number.isNaN(v))
+    .reduce((set, type) => {
+      set.add(type);
+      return set;
+    }, new Set());
+
   const now = new Date();
   const start = dayjs(now).startOf('hour').subtract(1, granularity).toDate();
   const end = dayjs(now).startOf('hour').toDate();
@@ -37,8 +46,10 @@ export default () => asyncRoute(async (req, res) => {
     hour: { $gte: start, $lte: end },
     realm,
     tenant,
+    ...(includeIds.size && { contentId: { $in: [...includeIds] } }),
     ...(types.size && { type: { $in: [...types] } }),
   };
+
   const hash = createHash('sha256').update(JSON.stringify({ $match, limit })).digest('hex');
   const cacheKey = `most_popular_content:${tenant}:${hash}`;
 
