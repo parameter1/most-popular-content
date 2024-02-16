@@ -24,10 +24,10 @@ bootService({
   onError: newrelic.noticeError.bind(newrelic),
   onStart: async () => mongodb.connect().then((client) => log(filterMongoUri(client))),
   onSignal: () => mongodb.close(),
-  onHealthCheck: () => {
-    mongodb.ping({ id: pkg.name, withWrite: false }).then(() => 'db okay');
-    redis.ping().then(() => 'redis cache okay');
-  },
+  onHealthCheck: () => Promise.all([
+    mongodb.ping({ id: pkg.name, withWrite: false }).then(() => 'db okay'),
+    redis.ping().then(() => 'redis cache okay'),
+  ]),
 }).catch((e) => setImmediate(() => {
   newrelic.noticeError(e);
   throw e;
