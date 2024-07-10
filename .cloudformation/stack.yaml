@@ -1,0 +1,120 @@
+---
+Metadata:
+  TemplateId: "arn:aws:cloudformation:us-east-2:598984531759:generatedTemplate/72c5ae22-f4c8-45ee-8196-f8f270bdbd5a"
+Parameters:
+  ZipHash:
+    Type: "String"
+    Description: "The MD5 hash of the code archive to be deployed"
+  MongoURL:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The MongoDB connection string for P1Events/Scorpia"
+Resources:
+  EventsRule00rulemostpopularweeklycontent00tQtMF:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Events::Rule"
+    DeletionPolicy: "Retain"
+    Properties:
+      EventBusName: "default"
+      ScheduleExpression: "rate(30 minutes)"
+      Targets:
+      - Arn:
+          Fn::GetAtt:
+          - "LambdaFunction00mostpopularweeklycontent00YcIFv"
+          - "Arn"
+        Id: "Idae044b04-3016-4113-b113-3308a135cfa5"
+      Id: "most-popular-weekly-content"
+      State: "ENABLED"
+      Name: "most-popular-weekly-content"
+  LambdaPermission00functionmostpopularweeklycontent00iEG4N:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00mostpopularweeklycontent00YcIFv"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn:
+        Ref: "EventsRule00rulemostpopularweeklycontent00tQtMF"
+      Principal: "events.amazonaws.com"
+  IAMManagedPolicy00policyserviceroleAWSLambdaTracerAccessExecutionRolee8b2fd31ff6c40aca5f006ca6974de2c00N0j5K:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::ManagedPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      ManagedPolicyName: "AWSLambdaTracerAccessExecutionRole-e8b2fd31-ff6c-40ac-a5f0-06ca6974de2c"
+      Path: "/service-role/"
+      Description: ""
+      Groups: []
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          Resource:
+          - "*"
+          Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+          Effect: "Allow"
+      Roles:
+      - "website-events"
+      Users: []
+  SQSQueue00mostpopularweeklycontentdlq00CRPbe:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::SQS::Queue"
+    DeletionPolicy: "Retain"
+    Properties:
+      SqsManagedSseEnabled: false
+      ReceiveMessageWaitTimeSeconds: 0
+      DelaySeconds: 0
+      MessageRetentionPeriod: 1209600
+      MaximumMessageSize: 262144
+      VisibilityTimeout: 30
+      QueueName: "most-popular-weekly-content-dlq"
+  LambdaFunction00mostpopularweeklycontent00YcIFv:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Function"
+    DeletionPolicy: "Retain"
+    Properties:
+      MemorySize: 256
+      Description: ""
+      TracingConfig:
+        Mode: "PassThrough"
+      VpcConfig:
+        SecurityGroupIds:
+        - "sg-08fe201a62edb4ee1"
+        SubnetIds:
+        - "subnet-0def7e10df98dbf02"
+        - "subnet-0f072553096e54b16"
+        - "subnet-03ea88b9eb475e4b5"
+        Ipv6AllowedForDualStack: false
+      DeadLetterConfig:
+        TargetArn:
+          Fn::GetAtt:
+          - "SQSQueue00mostpopularweeklycontentdlq00CRPbe"
+          - "Arn"
+      Timeout: 600
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: "Auto"
+      Handler: "packages/lambda/handlers/generate-content.handler"
+      Code:
+        S3Bucket: "cf-templates-most-popular-content"
+        S3Key:
+          Fn::Sub: "lambda/most-popular-content.${ZipHash}.zip"
+      Role: "arn:aws:iam::598984531759:role/service-role/website-events"
+      FileSystemConfigs: []
+      FunctionName: "most-popular-weekly-content"
+      Runtime: "nodejs14.x"
+      PackageType: "Zip"
+      LoggingConfig:
+        LogFormat: "Text"
+        LogGroup: "/aws/lambda/most-popular-weekly-content"
+      Environment:
+        Variables:
+          MONGO_URL:
+            Ref: "MongoURL"
+      EphemeralStorage:
+        Size: 512
+      Architectures:
+      - "x86_64"
