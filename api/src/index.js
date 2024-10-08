@@ -3,6 +3,7 @@ import bootService from '@parameter1/terminus/boot-service.js';
 import terminusUtils from '@parameter1/terminus/utils.js';
 import { filterMongoUri } from '@parameter1/events-repositories';
 import mongodb from './mongodb/client.js';
+import redis from './redis.js';
 import server from './server.js';
 import pkg from '../package.js';
 import { HOST, PORT } from './env.js';
@@ -23,7 +24,10 @@ bootService({
   onError: newrelic.noticeError.bind(newrelic),
   onStart: async () => mongodb.connect().then((client) => log(filterMongoUri(client))),
   onSignal: () => mongodb.close(),
-  onHealthCheck: () => mongodb.ping({ id: pkg.name, withWrite: false }).then(() => 'db okay'),
+  onHealthCheck: () => Promise.all([
+    mongodb.ping({ id: pkg.name, withWrite: false }).then(() => 'db okay'),
+    redis.ping().then(() => 'redis cache okay'),
+  ]),
 }).catch((e) => setImmediate(() => {
   newrelic.noticeError(e);
   throw e;
