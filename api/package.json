@@ -1,6 +1,6 @@
 {
   "name": "@most-popular-content/api",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "A simple, most popular website content API.",
   "author": "Jacob Bare <jacob@parameter1.com>",
   "homepage": "https://github.com/parameter1/most-popular-content/tree/master/api#readme",
