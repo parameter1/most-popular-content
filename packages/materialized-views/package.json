@@ -18,8 +18,8 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@parameter1/events-repositories": "^0.2.2",
-    "@parameter1/events-tenants": "^0.2.2",
+    "@parameter1/events-repositories": "^0.2.6",
+    "@parameter1/events-tenants": "^0.2.6",
     "async": "^3.2.3",
     "dayjs": "^1.11.0",
     "envalid": "^7.3.0"
