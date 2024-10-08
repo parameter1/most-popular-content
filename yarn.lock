@@ -1002,18 +1002,6 @@
   dependencies:
     "@octokit/openapi-types" "^10.1.5"
 
-"@parameter1/events-repositories@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.2.2.tgz#f84910e5431eb43e966365fea529ea31ffcf134e"
-  integrity sha512-KPpykvYq682GtBbngRtvle4XXy7dLD7BRZWcJP4wVauhQlHzVA/Ru2qQCuNdTAgn0pTspP4WlAx7MTapRRcYuA==
-  dependencies:
-    "@parameter1/events-tenants" "^0.2.2"
-    "@parameter1/events-ua-parser" "^0.2.0"
-    "@parameter1/events-utils" "^0.2.0"
-    "@parameter1/joi" "^1.2.10"
-    "@parameter1/mongodb" "^1.6.0"
-    dayjs "^1.10.7"
-
 "@parameter1/events-repositories@^0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@parameter1/events-repositories/-/events-repositories-0.2.6.tgz#807b66024d04e4fa4694d3ae07e4f6f06f03be31"
@@ -1026,27 +1014,12 @@
     "@parameter1/mongodb" "^1.6.0"
     dayjs "^1.10.7"
 
-"@parameter1/events-tenants@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.2.2.tgz#373cbdf7f9af1261ee4cfc80277c5316f5ea2a76"
-  integrity sha512-oVkK6n5Phx66WHFcKnB+YRd/j6aAnCjmaM3aXYJUfsrXebE+8R956gf4yW8eGtf4HXAMRBAlfcfn/Vd/yCpASg==
-  dependencies:
-    immutable "^4.0.0"
-
 "@parameter1/events-tenants@^0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@parameter1/events-tenants/-/events-tenants-0.2.6.tgz#adde15897dc3b677bd918f7dfcdc66ac357f0634"
   integrity sha512-6bJHKSnbIbBw2EVdVV8Rs/57ld0EyBL29U/tNQ4trHwW7X643MzItVKTzvgylrktmxoHRgqHEHQ1hnehaxq9TQ==
   dependencies:
     immutable "^4.0.0"
-
-"@parameter1/events-ua-parser@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/events-ua-parser/-/events-ua-parser-0.2.0.tgz#aa0777acde3f3bae9fc855088f1501e33b7d444b"
-  integrity sha512-KTnyjt+E6TQ/Jh/9q5GDO0smB3GEmscEOF0+2osLHB29WpGOE2lI8A2sa2K3EJW57+6C7XPiK5xOkYMr5s/SGw==
-  dependencies:
-    isbot "^3.3.4"
-    ua-parser-js "^0.7.31"
 
 "@parameter1/events-ua-parser@^0.2.4":
   version "0.2.4"
@@ -4267,11 +4240,6 @@ isarray@1.0.0, isarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
-isbot@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/isbot/-/isbot-3.3.4.tgz#17d6230a604d8185922476b4966091abb4b43657"
-  integrity sha512-a6o/e6nBMoRGvoovg5NT2r/N7S4398yCDXc6HgEOILdBAjYv05SX1MBhgc8SHnEJdRyLfOpAPqc10ezLWkj7rQ==
-
 isbot@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/isbot/-/isbot-3.8.0.tgz#b1f8e3d19aca0961b5ed27b62bb8bb0a275781e4"
@@ -7183,11 +7151,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-ua-parser-js@^0.7.31:
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.31.tgz#649a656b191dffab4f21d5e053e27ca17cbff5c6"
-  integrity sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==
 
 ua-parser-js@^0.7.37:
   version "0.7.39"
