@@ -38,6 +38,9 @@ export default () => asyncRoute(async (req, res) => {
     }, new Set());
 
   await redis.incr(`most_popular_content:request-log:${tenant}:${realm}:${granularity}:${limit}`);
+  if (types.size) {
+    await Promise.all([...types].map((type) => redis.incr(`most_popular_content:request-log:type:${type}`)));
+  }
 
   const now = new Date();
   const start = dayjs(now).startOf('hour').subtract(1, granularity).toDate();
