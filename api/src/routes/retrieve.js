@@ -37,6 +37,8 @@ export default () => asyncRoute(async (req, res) => {
       return set;
     }, new Set());
 
+  await redis.incr(`most_popular_content:request-log:${tenant}:${realm}:${granularity}:${limit}`);
+
   const now = new Date();
   const start = dayjs(now).startOf('hour').subtract(1, granularity).toDate();
   const end = dayjs(now).startOf('hour').toDate();
